@@ -66,3 +66,9 @@ SELECT first_name || ' ' || last_name AS full_name FROM students
 JOIN enrollments ON students.student_id = enrollments.student_id
 JOIN courses ON courses.course_id = enrollments.course_id
 WHERE courses.course_name = 'Space Mining 1001';
+
+SELECT 
+    courses.course_name,
+    professors.first_name || ' ' || professors.last_name AS professor_full_name
+FROM courses
+JOIN professors ON courses.professor_id = professors.professor_id;
