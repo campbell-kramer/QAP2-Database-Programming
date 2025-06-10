@@ -75,3 +75,11 @@ JOIN professors ON courses.professor_id = professors.professor_id;
 
 SELECT DISTINCT course_name FROM courses
 JOIN enrollments ON courses.course_id = enrollments.course_id;
+
+UPDATE students
+SET email = 'pookie333@seegson.net'
+WHERE first_name = 'Thomas' AND last_name = 'Kane';
+
+DELETE FROM enrollments
+WHERE student_id = (SELECT student_id FROM students WHERE first_name = 'Thomas' AND last_name = 'Kane')
+AND course_id = (SELECT course_id FROM courses WHERE course_name = 'Deep Space Psychological Assessment');
