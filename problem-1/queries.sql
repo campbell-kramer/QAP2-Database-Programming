@@ -1,9 +1,9 @@
 CREATE TABLE students (
 	student_id SERIAL PRIMARY KEY,
-  first_name TEXT,
-  last_name TEXT,
-  email TEXT,
-  enrollment_date DATE
+	first_name TEXT,
+	last_name TEXT,
+	email TEXT,
+	enrollment_date DATE
 );
 
 CREATE TABLE departments (
