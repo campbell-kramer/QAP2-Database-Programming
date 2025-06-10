@@ -62,24 +62,29 @@ INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 ((SELECT student_id FROM students WHERE first_name = 'Arthur' AND last_name = 'Dallas'), (SELECT course_id FROM courses WHERE course_name = 'Company Etiquette'), '2120-07-29'),
 ((SELECT student_id FROM students WHERE first_name = 'Dennis' AND last_name = 'Parker'), (SELECT course_id FROM courses WHERE course_name = 'Space Mining 1001'), '2120-08-25');
 
+-- Retrieve the full names of all students enrolled in Space Mining 1001
 SELECT first_name || ' ' || last_name AS full_name FROM students
 JOIN enrollments ON students.student_id = enrollments.student_id
 JOIN courses ON courses.course_id = enrollments.course_id
 WHERE courses.course_name = 'Space Mining 1001';
 
+-- Retrieve a list of all courses along with the professor’s full name who teaches each course
 SELECT 
     courses.course_name,
     professors.first_name || ' ' || professors.last_name AS professor_full_name
 FROM courses
 JOIN professors ON courses.professor_id = professors.professor_id;
 
+-- Retrieve all courses that have students enrolled in them
 SELECT DISTINCT course_name FROM courses
 JOIN enrollments ON courses.course_id = enrollments.course_id;
 
+-- Update one of the student’s emails
 UPDATE students
 SET email = 'pookie333@seegson.net'
 WHERE first_name = 'Thomas' AND last_name = 'Kane';
 
+-- Remove a student from one of their courses
 DELETE FROM enrollments
 WHERE student_id = (SELECT student_id FROM students WHERE first_name = 'Thomas' AND last_name = 'Kane')
 AND course_id = (SELECT course_id FROM courses WHERE course_name = 'Deep Space Psychological Assessment');
