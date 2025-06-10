@@ -2,7 +2,7 @@ CREATE TABLE products (
 	product_id SERIAL PRIMARY KEY,
 	product_name TEXT,
 	price DECIMAL(10, 2),
-	stock_quantity INT,
+	stock_quantity INT
 );
 
 CREATE TABLE customers (
@@ -10,20 +10,20 @@ CREATE TABLE customers (
 	first_name TEXT,
 	last_name TEXT,
 	email TEXT
-)
+);
 
 CREATE TABLE orders (
 	order_id SERIAL PRIMARY KEY,
 	customer_id INT REFERENCES customers(customer_id),
 	order_date DATE
-)
+);
 
 CREATE TABLE order_items (
 	order_id INT REFERENCES orders(order_id),
 	product_id INT REFERENCES products(product_id),
 	quantity INT,
 	PRIMARY KEY (order_id, product_id)
-)
+);
 
 INSERT INTO products (product_name, price, stock_quantity) VALUES
 ('iPhone', 1899.99, 200),
@@ -39,12 +39,12 @@ INSERT INTO customers (first_name, last_name, email) VALUES
 ('Charlie', 'Holloway', 'cholloway@science.com'),
 ('David', 'Last-name', 'david@weylandcorp.com');
 
-INSERT INTO orders (order_id, customer_id) VALUES
-(1, 1, 2089-08-08),
-(2, 2, 2089-11-08),
-(3, 2, 2089-11-09),
-(4, 3, 2089-11-12),
-(5, 4, 2089-11-14);
+INSERT INTO orders (order_id, customer_id, order_date) VALUES
+(1, 1, '2089-08-08'),
+(2, 2, '2089-11-08'),
+(3, 2, '2089-11-09'),
+(4, 3, '2089-11-12'),
+(5, 4, '2089-11-14');
 
 INSERT INTO order_items (order_id, product_id, quantity) VALUES
 (1, 1, 1),
