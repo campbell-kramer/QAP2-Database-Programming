@@ -72,3 +72,6 @@ SELECT
     professors.first_name || ' ' || professors.last_name AS professor_full_name
 FROM courses
 JOIN professors ON courses.professor_id = professors.professor_id;
+
+SELECT DISTINCT course_name FROM courses
+JOIN enrollments ON courses.course_id = enrollments.course_id;
