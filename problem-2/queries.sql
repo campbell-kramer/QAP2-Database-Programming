@@ -3,7 +3,6 @@ CREATE TABLE products (
 	product_name TEXT,
 	price DECIMAL(10, 2),
 	stock_quantity INT,
-	enrollment_date DATE
 );
 
 CREATE TABLE customers (
@@ -25,3 +24,34 @@ CREATE TABLE order_items (
 	quantity INT,
 	PRIMARY KEY (order_id, product_id)
 )
+
+INSERT INTO products (product_name, price, stock_quantity) VALUES
+('iPhone', 1899.99, 200),
+('iPad', 999.99, 50),
+('iPod Shuffle', 149.99, 100),
+('iPod Nano', 399.99, 45),
+('Zune', 299.99, 67),
+('Hamburger', 29.50, 50);
+
+INSERT INTO customers (first_name, last_name, email) VALUES
+('Elizabeth', 'Shaw', 'eshaw@science.com'),
+('Meredith', 'Vickers', 'meredith_vickers@weylandcorp.com'),
+('Charlie', 'Holloway', 'cholloway@science.com'),
+('David', 'Last-name', 'david@weylandcorp.com');
+
+INSERT INTO orders (order_id, customer_id) VALUES
+(1, 1, 2089-08-08),
+(2, 2, 2089-11-08),
+(3, 2, 2089-11-09),
+(4, 3, 2089-11-12),
+(5, 4, 2089-11-14);
+
+INSERT INTO order_items (order_id, product_id, quantity) VALUES
+(1, 1, 1),
+(1, 3, 1),
+(2, 4, 1),
+(2, 6, 1),
+(3, 6, 10),
+(4, 5, 1),
+(4, 6, 1),
+(5, 2, 100);
