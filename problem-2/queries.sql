@@ -55,3 +55,33 @@ INSERT INTO order_items (order_id, product_id, quantity) VALUES
 (4, 5, 1),
 (4, 6, 1),
 (5, 2, 100);
+
+-- Retrieve the names and stock quantities of all products
+SELECT product_name, stock_quantity FROM products;
+
+-- Retrieve the product names and quantities for one of the orders placed.
+SELECT 
+    product_name,
+    quantity
+FROM order_items
+JOIN products ON order_items.product_id = products.product_id
+WHERE order_items.order_id = 2;
+
+-- Retrieve all orders placed by a specific customer
+SELECT order_items.order_id, order_items.product_id, order_items.quantity
+FROM order_items
+JOIN orders ON order_items.order_id = orders.order_id
+WHERE orders.customer_id = 2;
+
+-- Perform an update to simulate the reducing of stock quantities of items after a customer places an order.
+-- This stock update is via order_id 3 (10 Hamburgers for Meredith Vickers [hungry lady])
+UPDATE products
+SET stock_quantity = stock_quantity - 10
+WHERE product_name = 'Hamburger';
+
+-- Remove one of the orders and all associated order items from the system
+DELETE FROM order_items 
+WHERE order_id = 4;
+
+DELETE FROM orders
+WHERE order_id = 4;
